@@ -1,13 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './styles/main.scss'
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+
+
+import AppRouter from './routers/approuter';
+
+import { addNote, removeNote, updateNote } from './actions/notes';
+
+
+
+
+import { setTextFilter, sortByDate, setStartDate, setEndDate } from './actions/filters'
+
+import configureStore from './store/configureStore';
+
+import selectNotes from './selectors/notes';
+
+
+const store = configureStore();
+
+store.dispatch(addNote({ topic: 'Redux', description: 'how to connect Redux to react', note: 'this is the code that you can use' }))
+store.dispatch(addNote({ topic: 'node.js', description: 'how to connect node.js to the react', note: 'this is the code' }))
+
+// const state = store.getState();
+// const visibleNotes = getVisibleNotes(state.notes, state.filters);
+
+// console.log(visibleNotes)
+
+
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  jsx,
   document.getElementById('root')
 );
 
