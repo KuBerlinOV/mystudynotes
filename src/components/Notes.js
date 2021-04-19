@@ -1,7 +1,7 @@
 import React from 'react';
 import NotesList from './NotesList'
-import Note from './Note';
 import NotesListFilters from './NotesListFilters';
+import NoteForm from './NoteForm';
 
 
 
@@ -10,11 +10,13 @@ const Notes = ({ info }) => {
 
     return (
         <div>
-            <ul>
-                <h1>My notes: </h1>
+            <section>
+
                 <NotesListFilters />
+                <h1>My notes: </h1>
+                <NoteForm />
                 <NotesList />
-            </ul>
+            </section>
         </div>
     )
 }

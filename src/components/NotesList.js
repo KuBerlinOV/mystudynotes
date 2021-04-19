@@ -23,8 +23,7 @@ const NotesList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        notes: selectNotes(state.notes, state.filters),
-
+        notes: selectNotes(state.notes, state.filters)
     }
 }
 

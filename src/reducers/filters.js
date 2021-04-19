@@ -1,9 +1,9 @@
 //reducers = filter
 const filtersReducerDefaultState = {
     text: '',
-    sortBy: 'date',
+    sortBy: 'status',
     startDate: undefined,
-    endDate: undefined,
+    endDate: undefined
 }
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -12,6 +12,11 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
             return {
                 ...state,
                 text: action.text
+            };
+        case 'SORT_BY_STATUS':
+            return {
+                ...state,
+                sortBy: 'status'
             };
         case 'SORT_BY_DATE':
             return {

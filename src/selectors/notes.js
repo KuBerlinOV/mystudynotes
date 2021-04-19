@@ -1,5 +1,6 @@
 
 
+
 const selectNotes = (notes, { text, sortBy, startDate, endDate }) => {
     return notes.filter(note => {
         const descriptionToMatch = note.description.toLowerCase()
@@ -14,6 +15,8 @@ const selectNotes = (notes, { text, sortBy, startDate, endDate }) => {
     }).sort((a, b) => {
         if (sortBy === 'date') {
             return a.createdAt < b.createdAt ? 1 : -1
+        } else if (sortBy === 'status') {
+            return a.status === 'mastered' ? 1 : -1
         }
     })
 }
