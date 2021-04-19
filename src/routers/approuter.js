@@ -9,6 +9,8 @@ import Header from '../components/Header';
 import Libraries from '../components/Libraries';
 import Notes from '../components/Notes'
 import Note from '../components/Note'
+import NoteForm from '../components/NoteForm'
+import AddNote from '../components/AddNote'
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -17,6 +19,8 @@ const AppRouter = () => (
             <Switch>
                 <Route path='/' component={App} exact={true} />
                 <Route path='/notes' component={Notes} />
+                <Route path='/notes/noteform' component={NoteForm} />
+                <Route path='/notes/addnote' component={AddNote} />
                 <Route path='/notes/edit/:id' component={Note} />
                 <Route path='/about' component={About} />
                 <Route component={NotFoundPage} />
