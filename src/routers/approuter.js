@@ -22,7 +22,7 @@ const AppRouter = () => {
                     <Route path='/' component={App} exact={true} />
                     <Route path='/notes' component={Notes} />
                     <Route path='/notes/addnote' component={NoteForm} />
-                    <Route path='/notes/edit/:id' component={EditNote} />
+                    <Route path='/edit/:id' component={EditNote} />
                     <Route path='/about' component={About} />
                     <Route component={NotFoundPage} />
                 </Switch>

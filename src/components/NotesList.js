@@ -12,7 +12,10 @@ const NotesList = (props) => {
                     return <li><Note
                         key={note.id}
                         id={note.id}
-                        {...note} />
+                        {...note}
+                        showModal={props.showModal}
+                    />
+
                     </li> //<- {...note} this is spreading the note objects with all their key/value pairs and return from the state into the props.
                 })}
 

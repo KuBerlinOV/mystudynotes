@@ -1,7 +1,9 @@
-import React, { useImperativeHandle } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import NoteForm from './NoteForm'
+
 import { removeNote, updateStatus } from '../actions/notes'
-import EditNote from './EditNote';
+import { Link } from 'react-router-dom';
 
 // note: {
 //     id: uuid(),
@@ -16,8 +18,9 @@ import EditNote from './EditNote';
 
 const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatch, status }) => {
 
+
     return (
-        <div >
+        <div>
             <h3> Topic: {topic} </h3>
             <p>Description: {description} </p>
             <p>Note: {note} </p>
@@ -32,7 +35,7 @@ const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatc
                 dispatch(removeNote(id))
             }
             } >Delete</button>
-            <EditNote />
+            <button> <Link to={`/edit/${id}`}> Edit</Link></button>
         </div>
     )
 }

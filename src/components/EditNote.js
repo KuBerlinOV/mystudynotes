@@ -1,17 +1,25 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
+import NoteForm from './NoteForm';
 
 
-const EditNote = ({ id, handleModal, showModal }) => {
 
+const EditNote = (props) => {
     return (
         <div>
-            <button onClick={handleModal}>Edit</button>
-            <Modal isOpen={showModal}>
-                <p>{id}</p>
-            </Modal>
+            <NoteForm
+                editnote={props.note}
+                showModal={true} />
         </div>
     )
 }
 
-export default EditNote;
+const mapStateToProps = (state, props) => {
+    return {
+        note: state.notes.find((note) => note.id == props.match.params.id)
+    }
+
+}
+
+export default connect(mapStateToProps)(EditNote);
