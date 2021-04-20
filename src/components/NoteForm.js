@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { addNote } from '../actions/notes'
+import { addNote } from '../actions/notes';
+import { Link } from 'react-router-dom';
 
 //moment 
 const now = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 
 const NoteForm = (props) => {
+
+
     //local states
     const [state, setState] = useState({
         topic: '',
@@ -51,7 +54,7 @@ const NoteForm = (props) => {
 
     return (
         <div>
-            <button onClick={handleModal} >Create Note</button>
+            <button onClick={handleModal}>Create Note</button>
             <Modal isOpen={showModal} onRequestClose={handleModal} >
                 <div><h3 color="red">Note</h3>
                     <form onSubmit={handleSubmit} action="">
@@ -65,8 +68,6 @@ const NoteForm = (props) => {
                         <input type="text" placeholder="reference" name="reference" id="" value={state.reference} onChange={handleChange} />
                         <h3>Tag</h3>
                         <input type="text" placeholder="tag" name="tag" value={state.tag} onChange={handleChange} />
-
-
 
                         <div>
                             {state.error && <p>Please provide topic and description</p>}

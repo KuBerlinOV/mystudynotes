@@ -1,6 +1,7 @@
 import React, { useImperativeHandle } from 'react';
 import { connect } from 'react-redux';
 import { removeNote, updateStatus } from '../actions/notes'
+import EditNote from './EditNote';
 
 // note: {
 //     id: uuid(),
@@ -31,6 +32,7 @@ const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatc
                 dispatch(removeNote(id))
             }
             } >Delete</button>
+            <EditNote />
         </div>
     )
 }

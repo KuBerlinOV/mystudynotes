@@ -5,7 +5,7 @@ import NoteForm from './NoteForm';
 
 
 
-const Notes = ({ info }) => {
+const Notes = (props) => {
 
 
     return (

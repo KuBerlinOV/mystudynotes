@@ -7,22 +7,28 @@ import About from '../components/About';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 import Libraries from '../components/Libraries';
-import Notes from '../components/Notes'
-import Note from '../components/Note'
+import Notes from '../components/Notes';
+import Note from '../components/Note';
+import NoteForm from '../components/NoteForm';
+import EditNote from '../components/EditNote'
 
-const AppRouter = () => (
-    <BrowserRouter>
-        <div>
-            <Header />
-            <Switch>
-                <Route path='/' component={App} exact={true} />
-                <Route path='/notes' component={Notes} />
-                <Route path='/notes/edit/:id' component={Note} />
-                <Route path='/about' component={About} />
-                <Route component={NotFoundPage} />
-            </Switch>
-        </div>
-    </BrowserRouter>
-)
+const AppRouter = () => {
+    return (
+
+        <BrowserRouter>
+            <div>
+                <Header />
+                <Switch>
+                    <Route path='/' component={App} exact={true} />
+                    <Route path='/notes' component={Notes} />
+                    <Route path='/notes/addnote' component={NoteForm} />
+                    <Route path='/notes/edit/:id' component={EditNote} />
+                    <Route path='/about' component={About} />
+                    <Route component={NotFoundPage} />
+                </Switch>
+            </div>
+        </BrowserRouter>
+    )
+}
 
 export default AppRouter;
