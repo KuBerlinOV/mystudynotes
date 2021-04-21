@@ -14,10 +14,10 @@ const EditNote = (props) => {
                 handleSubmit={(note) => {
                     //dispatch action to edit the expense
                     props.dispatch(updateNote(props.note.id, note))
-                    props.history.push('/notes')
                     //redirect to dashBoard
+                    props.history.push('/notes')
                 }}
-                showModal={true} />
+            />
         </div>
     )
 }

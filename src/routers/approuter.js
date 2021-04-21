@@ -8,8 +8,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 import Libraries from '../components/Libraries';
 import Notes from '../components/Notes';
-import Note from '../components/Note';
-import NoteForm from '../components/NoteForm';
+import AddNote from '../components/AddNote';
 import EditNote from '../components/EditNote'
 
 const AppRouter = () => {
@@ -21,7 +20,7 @@ const AppRouter = () => {
                 <Switch>
                     <Route path='/' component={App} exact={true} />
                     <Route path='/notes' component={Notes} />
-                    <Route path='/notes/addnote' component={NoteForm} />
+                    <Route path='/addnote' component={AddNote} />
                     <Route path='/edit/:id' component={EditNote} />
                     <Route path='/about' component={About} />
                     <Route component={NotFoundPage} />

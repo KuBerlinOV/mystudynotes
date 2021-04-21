@@ -6,7 +6,7 @@ const Libraries = () => {
     return (
         <div>
             <ul>
-                <Notes />
+
             </ul>
         </div>
     )

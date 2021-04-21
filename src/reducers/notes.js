@@ -12,8 +12,9 @@ const notesReducer = (state = notesReducerDefaultState, action) => {
                         ...note,
                         ...action.updates
                     }
+                } else {
+                    return note
                 }
-                return note
             });
         case 'REMOVE_NOTE':
             return state.filter(({ id }) => id !== action.id);
@@ -30,9 +31,7 @@ const notesReducer = (state = notesReducerDefaultState, action) => {
                         status: 'in progress'
                     }
                 } else {
-                    return {
-                        ...note
-                    }
+                    return note
                 }
             })
         default:
