@@ -17,7 +17,7 @@ const NoteForm = (props) => {
         note: props.noteBeforeUpdate ? props.noteBeforeUpdate.note : '',
         reference: props.noteBeforeUpdate ? props.noteBeforeUpdate.reference : '',
         tag: props.noteBeforeUpdate ? props.noteBeforeUpdate.tag : '',
-        createdAt: props.noteBeforeUpdate ? props.noteBeforeUpdate.createdAt : moment().format('MMMM Do YYYY, h:mm:ss a'),
+        createdAt: props.noteBeforeUpdate ? props.noteBeforeUpdate.createdAt : moment(),
         error: false
     });
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import NoteForm from './NoteForm'
-
+import moment from 'moment'
 import { removeNote, updateStatus } from '../actions/notes'
 import { Link } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatc
             <button onClick={() => {
                 dispatch(updateStatus(id))
             }}>Change status</button>
-            <p>Date: {createdAt} </p>
+            <p>Date: {moment(createdAt).format('MMMM Do YYYY, h:mm')} </p>
             <button onClick={() => {
                 dispatch(removeNote(id))
             }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setEndDate, setStartDate, setTextFilter, sortByDate, sortByStatus } from '../actions/filters';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
 
 const NotesListFilters = (props) => {
     const [calendarFocused, setCalendarFocused] = useState(null)
@@ -41,7 +42,10 @@ const NotesListFilters = (props) => {
                     endDate={props.filters.endDate}
                     onDatesChange={handleDatesChange}
                     focusedInput={calendarFocused}
+                    showClearDates={true}
                     onFocusChange={handleOnFocusChange}
+                    numberOfMonths={1}
+                    isOutsideRange={() => false}
                 />
             </div>
         </div>

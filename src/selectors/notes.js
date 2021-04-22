@@ -1,4 +1,4 @@
-
+import moment from 'moment';
 
 
 const selectNotes = (notes, { text, sortBy, startDate, endDate }) => {
@@ -6,10 +6,14 @@ const selectNotes = (notes, { text, sortBy, startDate, endDate }) => {
         const descriptionToMatch = note.description.toLowerCase()
         const topicToMatch = note.topic.toLowerCase();
         const textToMatch = text.toLowerCase();
-
         const textMatch = descriptionToMatch.includes(textToMatch) || topicToMatch.includes(textToMatch) ? true : false;
-        const startDateMatch = typeof startDate !== 'number' || note.createdAt >= startDate;
-        const endDateMatch = typeof endDate !== 'number' || note.createdAt <= endDate;
+
+        const createdAtMoment = moment(note.createdAt)
+        //dates pickers logic with moment methods are needed because the note.createdAt are not a number/unixtimestamp the anymore. 
+        //The moment.js returns the moment instances. Therefore we need to use moment methods to compare moment instances or dates and not numbers like it was done before.
+        //Here is an example how it was done before: const endDateMatch = typeof endDate !== 'number' || note.createdAt <= endDate;
+        const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
+        const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
 
         return textMatch && startDateMatch && endDateMatch
     }).sort((a, b) => {
