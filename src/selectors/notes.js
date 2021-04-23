@@ -3,8 +3,8 @@ import moment from 'moment';
 
 const selectNotes = (notes, { text, sortBy, startDate, endDate }) => {
     return notes.filter(note => {
-        const descriptionToMatch = note.description.toLowerCase()
-        const topicToMatch = note.topic.toLowerCase();
+        const descriptionToMatch = note.topic.toLowerCase()
+        const topicToMatch = note.description.toLowerCase();
         const textMatch = descriptionToMatch.includes(text.toLowerCase()) || topicToMatch.includes(text.toLowerCase()) ? true : false;
 
         const createdAtMoment = moment(note.createdAt)
