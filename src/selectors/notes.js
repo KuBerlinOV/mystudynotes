@@ -5,8 +5,7 @@ const selectNotes = (notes, { text, sortBy, startDate, endDate }) => {
     return notes.filter(note => {
         const descriptionToMatch = note.description.toLowerCase()
         const topicToMatch = note.topic.toLowerCase();
-        const textToMatch = text.toLowerCase();
-        const textMatch = descriptionToMatch.includes(textToMatch) || topicToMatch.includes(textToMatch) ? true : false;
+        const textMatch = descriptionToMatch.includes(text.toLowerCase()) || topicToMatch.includes(text.toLowerCase()) ? true : false;
 
         const createdAtMoment = moment(note.createdAt)
         //dates pickers logic with moment methods are needed because the note.createdAt are not a number/unixtimestamp the anymore. 

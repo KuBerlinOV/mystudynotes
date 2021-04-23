@@ -32,7 +32,7 @@ export const updateNote = (id, updates) => ({
     updates
 })
 
-export const updateStatus = (id) => ({
+export const updateStatus = ({ id } = {}) => ({
     type: 'UPDATE_STATUS',
     id
 })
