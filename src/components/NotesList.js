@@ -2,9 +2,9 @@ import React from 'react';
 import Note from './Note';
 import { connect } from 'react-redux';
 import selectNotes from '../selectors/notes';
-import removeNote from '../actions/notes';
 
-const NotesList = (props) => {
+
+export const NotesList = (props) => {
     return (
         <div>
             <ul>

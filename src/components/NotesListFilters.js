@@ -12,6 +12,7 @@ const NotesListFilters = (props) => {
     //Date picker logic and on change manipulation
     const handleDatesChange = ({ startDate, endDate }) => {
         props.dispatch(setStartDate(startDate))
+        console.log(startDate)
         props.dispatch(setEndDate(endDate))
     }
 

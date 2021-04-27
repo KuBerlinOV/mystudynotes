@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 const Header = () => (
     <header>
         <NavLink activeClassName='is-active' className="nav-link" to="/" exact={true}>Home</NavLink>
