@@ -16,7 +16,7 @@ const NoteForm = (props) => {
         reference: props.noteBeforeUpdate ? props.noteBeforeUpdate.reference : '',
         tag: props.noteBeforeUpdate ? props.noteBeforeUpdate.tag : '',
         createdAt: props.noteBeforeUpdate ? props.noteBeforeUpdate.createdAt : moment(),
-        error: false
+        error: ''
     });
 
 
@@ -31,9 +31,9 @@ const NoteForm = (props) => {
 
     const handleSubmit = (e) => {
         if (!state.topic || !state.description) {
-            setState({ error: true })
+            setState({ error: 'Please provide topic and description' })
         } else {
-            setState({ error: false })
+            setState({ error: '' })
             //this is the props with the local state.
             //This local state then passed with the props
             // to notes component where the action 'ADD_NOTE' is dispatched with this local state
@@ -44,7 +44,7 @@ const NoteForm = (props) => {
     //explanation why this value={state.topic || ''} was needed https://stackoverflow.com/questions/44312437/react-router-v4-this-props-history-push-not-working
     return (
         <div>
-            <form onSubmit={handleSubmit} action="">
+            <form onSubmit={handleSubmit} data-testid="form" action="">
                 <h3>Create Note</h3>
                 <h3>Topic:</h3>
                 <input type="text" placeholder="topic" name="topic" autoFocus value={state.topic || ''} onChange={handleChange} />
@@ -58,7 +58,7 @@ const NoteForm = (props) => {
                 <input type="text" placeholder="tag" name="tag" value={state.tag || ''} onChange={handleChange} />
 
                 <div>
-                    {state.error && <p>Please provide topic and description</p>}
+                    {state.error && <p>{state.error}</p>}
                     <button>Save</button>
                 </div>
             </form>

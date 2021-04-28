@@ -3,23 +3,77 @@ import { shallow } from 'enzyme';
 import NoteForm from '../../components/NoteForm';
 import notes from '../fixtures/notes';
 import { render, fireEvent, cleanup } from '@testing-library/react';
+import { Note } from '../../components/Note';
 
-describe('NoteForm', () => {
+// describe('NoteForm', () => {
+//     it('should render NoteForm correctly', () => {
+//         const wrapper = shallow(<NoteForm />)
+//         expect(wrapper).toMatchSnapshot();
+//     })
+//     it('should render NoteForm with a note data correctly', () => {
+//         const wrapper = shallow(<NoteForm noteBeforeUpdate={notes[0]} />)
+//         expect(wrapper).toMatchSnapshot();
+//     })
+//     it('should render error for invalid form submission', () => {
+//         const wrapper = shallow(<NoteForm />)
+//         expect(wrapper).toMatchSnapshot()
+//         wrapper.find('form').simulate('submit', {
+//             preventDefault: () => { }
+//         });
+//         expect(wrapper.find('p').text()).toBe('Please provide topic and description') //<-- because when using useState hook, I cannot access the state by
+//         expect(wrapper).toMatchSnapshot()                                             // using wrapper.state to test if it's changes, instead I am asserting that the <p> element
+//     })                                                                                // is rendered with the correct text
+//     it('should set topic on input change', () => {
+//         const wrapper = shallow(<NoteForm />);
+//         wrapper.find('input').at(0).simulate('change', {
+//             target: { value: 'new topic' }
+//         })
+//         expect(wrapper).toMatchSnapshot()
+//         expect(wrapper.find('input').at(0).prop('value')).toEqual('new topic');
+//     })
+// })
+
+describe("NoteForm", () => {
     it('should render NoteForm correctly', () => {
-        const wrapper = shallow(<NoteForm />)
-        expect(wrapper).toMatchSnapshot();
-    })
+        const { container } = render(<NoteForm />)
+        expect(container).toMatchSnapshot()
+    });
     it('should render NoteForm with a note data correctly', () => {
-        const wrapper = shallow(<NoteForm noteBeforeUpdate={notes[0]} />)
-        expect(wrapper).toMatchSnapshot();
-    })
+        const { container } = render(<NoteForm noteBeforeUpdate={notes[0]} />)
+        expect(container).toMatchSnapshot();
+    });
     it('should render error for invalid form submission', () => {
-        const wrapper = shallow(<NoteForm />)
-        expect(wrapper).toMatchSnapshot()
-        wrapper.find('form').simulate('submit', {
-            preventDefault: () => { }
-        });
-        expect(wrapper.findByProps('error')).toBeTruthy()// <--this simulates that the 
-        expect(wrapper).toMatchSnapshot()
+        const { container, getByTestId, getByText } = render(<NoteForm />);
+        expect(container).toMatchSnapshot();
+        fireEvent.submit(getByTestId('form'));
+        expect(getByText('Please provide topic and description')).toBeInTheDocument(); // here we using get by text in order to make sure that the error state was updated as the error string was rendered after empty form submit
+        // expect(container.find('p').text()).toBe('Please provide topic and description');
+        expect(container).toMatchSnapshot();
     })
+    it('should update topic input value on change', () => {
+        const { container, queryByPlaceholderText } = render(<NoteForm />)
+
+        const topicInput = queryByPlaceholderText('topic');
+        fireEvent.change(topicInput, { target: { value: 'new topic' } });
+        expect(topicInput.value).toBe('new topic')
+        expect(container).toMatchSnapshot();
+    });
+    it('should update description input value on change', () => {
+        const { container, queryByPlaceholderText } = render(<NoteForm />)
+
+        const descriptionInput = queryByPlaceholderText('description');
+        fireEvent.change(descriptionInput, { target: { value: 'new description' } });
+        expect(descriptionInput.value).toBe('new description')
+        expect(container).toMatchSnapshot();
+    });
+    it('should update note input value on change', () => {
+        const { container, queryByPlaceholderText } = render(<NoteForm />)
+
+        const noteInput = queryByPlaceholderText('write your note here');
+        fireEvent.change(noteInput, { target: { value: 'new note' } });
+        expect(noteInput.value).toBe('new note')
+        expect(container).toMatchSnapshot();
+    });
+
+
 })
