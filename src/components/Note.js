@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 //     createdAt
 // }
 
-const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatch, status }) => {
+export const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatch, status }) => {
 
 
     return (

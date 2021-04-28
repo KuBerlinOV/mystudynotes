@@ -7,19 +7,23 @@ import selectNotes from '../selectors/notes';
 export const NotesList = (props) => {
     return (
         <div>
-            <ul>
-                {props.notes.map(note => {
-                    return <li><Note
-                        key={note.id}
-                        id={note.id}
-                        {...note}
-                        showModal={props.showModal}
-                    />
+            { props.notes.length === 0 ? (
+                <p>No notes</p>
+            ) : (
+                <ul>
+                    {props.notes.map(note => {
+                        return <li><Note
+                            key={note.topic}
+                            id={note.id}
+                            {...note}
+                            showModal={props.showModal}
+                        />
 
-                    </li> //<- {...note} this is spreading the note objects with all their key/value pairs and return from the state into the props.
-                })}
+                        </li> //<- {...note} this is spreading the note objects with all their key/value pairs and return from the state into the props.
+                    })}
 
-            </ul>
+                </ul>
+            )}
         </div>
     )
 }

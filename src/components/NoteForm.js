@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 
 //moment 
 const now = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -64,10 +62,9 @@ const NoteForm = (props) => {
                     <button>Save</button>
                 </div>
             </form>
-        </div >
+        </div>
     )
 }
-
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NotesList from './NotesList'
 import NotesListFilters from './NotesListFilters';
 import { Link } from 'react-router-dom';

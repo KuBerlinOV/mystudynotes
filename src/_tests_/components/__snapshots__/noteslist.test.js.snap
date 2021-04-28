@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NotesList should render NotesLise 1`] = `
+exports[`NotesList should render NotesList 1`] = `
 <div>
   <ul>
     <li>
@@ -8,7 +8,7 @@ exports[`NotesList should render NotesLise 1`] = `
         createdAt={0}
         description="redux note"
         id="1"
-        key="1"
+        key="redux"
         note="here is a note"
         reference="some reference"
         status="mastered"
@@ -21,7 +21,7 @@ exports[`NotesList should render NotesLise 1`] = `
         createdAt={-518400000}
         description="react note"
         id="2"
-        key="2"
+        key="react"
         note="here is another note"
         reference="some other reference"
         status="in progress"
@@ -34,7 +34,7 @@ exports[`NotesList should render NotesLise 1`] = `
         createdAt={345600000}
         description="about moment"
         id="3"
-        key="3"
+        key="moment.js"
         note="here is information"
         reference="moment from moment.js"
         status="in progress"
@@ -46,4 +46,10 @@ exports[`NotesList should render NotesLise 1`] = `
 </div>
 `;
 
-exports[`should render NotesList with notes 1`] = `ShallowWrapper {}`;
+exports[`NotesList should render paragraph 1`] = `
+<div>
+  <p>
+    No notes
+  </p>
+</div>
+`;
