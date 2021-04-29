@@ -7,9 +7,11 @@ exports[`Note should render Note 1`] = `
   id="1"
   note="here is a note"
   reference="some reference"
+  removeNote={[MockFunction]}
   status="mastered"
   tag="some tag"
   topic="redux"
+  updateStatus={[MockFunction]}
 >
   <div>
     <h3>

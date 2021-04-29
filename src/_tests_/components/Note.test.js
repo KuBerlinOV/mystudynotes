@@ -2,13 +2,15 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Note } from '../../components/Note';
 import notes from '../fixtures/notes'
+import { updateNote } from '../../actions/notes';
 
 
-let wrapper, removeNoteSpy;
+let wrapper, removeNoteSpy, updateStatusSpy;
 
 beforeEach(() => {
     removeNoteSpy = jest.fn();
-    wrapper = mount(<Note {...notes[0]} />);
+    updateStatusSpy = jest.fn();
+    wrapper = mount(<Note removeNote={removeNoteSpy} updateStatus={updateStatusSpy} {...notes[0]} />);
 })
 
 describe('Note', () => {
@@ -25,8 +27,12 @@ describe('Note', () => {
         // />)
         expect(wrapper).toMatchSnapshot();
     })
-    // it('should dispatch remove note', () => {
-    //     wrapper.find('button').at(1).simulate('click')
-    //     wrapper.prop('removeNote').dispatch.toHaveBeenCalled()
-    // })
+    it('should call remove note with correct id', () => {
+        wrapper.find('button').at(1).simulate('click')
+        expect(removeNoteSpy).toHaveBeenCalledWith(notes[0].id)
+    })
+    it('should call update note with correct id', () => {
+        wrapper.find('button').at(0).simulate('click')
+        expect(updateStatusSpy).toHaveBeenCalledWith(notes[0].id)
+    })
 })
