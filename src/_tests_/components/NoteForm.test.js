@@ -1,10 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import NoteForm from '../../components/NoteForm';
 import notes from '../fixtures/notes';
-import { render, fireEvent, cleanup } from '@testing-library/react';
-import { Note } from '../../components/Note';
+import { render, fireEvent } from '@testing-library/react';
+import { create } from 'react-test-renderer';
 
+//Example of testing using enzyme
 // describe('NoteForm', () => {
 //     it('should render NoteForm correctly', () => {
 //         const wrapper = shallow(<NoteForm />)
@@ -74,6 +74,36 @@ describe("NoteForm", () => {
         expect(noteInput.value).toBe('new note')
         expect(container).toMatchSnapshot();
     });
+    it('should update reference input value on change', () => {
+        const { container, queryByPlaceholderText } = render(<NoteForm />)
 
+        const referenceInput = queryByPlaceholderText('reference');
+        fireEvent.change(referenceInput, { target: { value: 'new reference' } });
+        expect(referenceInput.value).toBe('new reference')
+        expect(container).toMatchSnapshot();
+    });
+    it('should update tag input value on change', () => {
+        const { container, queryByPlaceholderText } = render(<NoteForm />)
 
+        const tagInput = queryByPlaceholderText('tag');
+        fireEvent.change(tagInput, { target: { value: 'new tag' } });
+        expect(tagInput.value).toBe('new tag')
+        expect(container).toMatchSnapshot();
+    });
+    it('should call handleSubmit props with the local state object for valid submission', () => {
+        const handleSubmitSpy = jest.fn();
+        const { container, getByTestId } = render(
+            <NoteForm noteBeforeUpdate={notes[2]} handleSubmit={handleSubmitSpy}
+            />)
+        fireEvent.submit(getByTestId('form'));
+        expect(handleSubmitSpy).toHaveBeenLastCalledWith({
+            topic: notes[2].topic,
+            description: notes[2].description,
+            note: notes[2].note,
+            reference: notes[2].reference,
+            tag: notes[2].tag,
+            createdAt: notes[2].createdAt,
+            error: ''
+        })
+    })
 })

@@ -36,7 +36,7 @@ const NoteForm = (props) => {
             setState({ error: '' })
             //this is the props with the local state.
             //This local state then passed with the props
-            // to notes component where the action 'ADD_NOTE' is dispatched with this local state
+            // to notes component where the action 'ADD_NOTE' is dispatched with this local state of the noteform
             props.handleSubmit(state)
         }
         e.preventDefault();
