@@ -2,7 +2,6 @@ import React from 'react';
 import NoteForm from '../../components/NoteForm';
 import notes from '../fixtures/notes';
 import { render, fireEvent } from '@testing-library/react';
-import { create } from 'react-test-renderer';
 
 //Example of testing using enzyme
 // describe('NoteForm', () => {
@@ -39,7 +38,7 @@ describe("NoteForm", () => {
         expect(container).toMatchSnapshot()
     });
     it('should render NoteForm with a note data correctly', () => {
-        const { container } = render(<NoteForm noteBeforeUpdate={notes[0]} />)
+        const { container } = render(<NoteForm note={notes[0]} />)
         expect(container).toMatchSnapshot();
     });
     it('should render error for invalid form submission', () => {
@@ -93,7 +92,7 @@ describe("NoteForm", () => {
     it('should call handleSubmit props with the local state object for valid submission', () => {
         const handleSubmitSpy = jest.fn();
         const { container, getByTestId } = render(
-            <NoteForm noteBeforeUpdate={notes[2]} handleSubmit={handleSubmitSpy}
+            <NoteForm note={notes[2]} handleSubmit={handleSubmitSpy}
             />)
         fireEvent.submit(getByTestId('form'));
         expect(handleSubmitSpy).toHaveBeenLastCalledWith({

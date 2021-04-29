@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import NoteForm from './NoteForm'
 import moment from 'moment'
 import { removeNote, updateStatus } from '../actions/notes'
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // note: {
 //     id: uuid(),
@@ -16,9 +16,8 @@ import { Link } from 'react-router-dom';
 //     createdAt
 // }
 
-export const Note = ({ topic, description, note, reference, tag, createdAt, id, dispatch, status }) => {
-
-
+export const Note = ({ topic, description, note, reference, tag, createdAt, id, status, updateStatus, removeNote }) => {
+    const history = useHistory(); // use this instead of link to redirect to another page with params
     return (
         <div>
             <h3> Topic: {topic} </h3>
@@ -28,19 +27,25 @@ export const Note = ({ topic, description, note, reference, tag, createdAt, id, 
             <p>Tag: {tag} </p>
             <p>Status: {status}</p>
             <button onClick={() => {
-                dispatch(updateStatus(id))
+                updateStatus(id)
             }}>Change status</button>
             <p>Date: {moment(createdAt).format('MMMM Do YYYY, h:mm')} </p>
             <button onClick={() => {
-                dispatch(removeNote(id))
+                removeNote(id)
             }
             } >Delete</button>
-            <button> <Link to={`/edit/${id}`}> Edit</Link></button>
+            <button onClick={() => {
+                history.push(`/edit/${id}`)
+            }}> Edit</button>
         </div>
     )
 }
 
+// <Link to={`/edit/${id}`}> Edit</Link>
 
+const mapDispatchToProps = (dispatch) => ({
+    removeNote: (id) => dispatch(removeNote(id)),
+    updateStatus: (id) => dispatch(updateStatus(id))
+})
 
-
-export default connect()(Note);
+export default connect(undefined, mapDispatchToProps)(Note);

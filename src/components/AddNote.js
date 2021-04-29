@@ -4,16 +4,20 @@ import { withRouter } from 'react-router';
 import { addNote } from '../actions/notes';
 import NoteForm from './NoteForm';
 
-const AddNote = (props) => {
+export const AddNote = (props) => {
 
     return (
         <NoteForm
             handleSubmit={(note) => {
-                props.dispatch(addNote(note));
+                props.addNote(note);
                 props.history.push('/notes');
             }}
         />
     )
 }
 
-export default connect()(AddNote);
+const mapDispatchToProps = (dispatch) => ({
+    addNote: (note) => dispatch(addNote(note))
+})
+
+export default connect(undefined, mapDispatchToProps)(AddNote);

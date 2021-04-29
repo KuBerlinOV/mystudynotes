@@ -10,12 +10,12 @@ const NoteForm = (props) => {
 
     //local states
     const [state, setState] = useState({
-        topic: props.noteBeforeUpdate ? props.noteBeforeUpdate.topic : '',
-        description: props.noteBeforeUpdate ? props.noteBeforeUpdate.description : '',
-        note: props.noteBeforeUpdate ? props.noteBeforeUpdate.note : '',
-        reference: props.noteBeforeUpdate ? props.noteBeforeUpdate.reference : '',
-        tag: props.noteBeforeUpdate ? props.noteBeforeUpdate.tag : '',
-        createdAt: props.noteBeforeUpdate ? props.noteBeforeUpdate.createdAt : moment(),
+        topic: props.note ? props.note.topic : '',
+        description: props.note ? props.note.description : '',
+        note: props.note ? props.note.note : '',
+        reference: props.note ? props.note.reference : '',
+        tag: props.note ? props.note.tag : '',
+        createdAt: props.note ? props.note.createdAt : moment(),
         error: ''
     });
 
