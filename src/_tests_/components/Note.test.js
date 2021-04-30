@@ -2,7 +2,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Note } from '../../components/Note';
 import notes from '../fixtures/notes'
-import { updateNote } from '../../actions/notes';
 
 
 let wrapper, removeNoteSpy, updateStatusSpy;

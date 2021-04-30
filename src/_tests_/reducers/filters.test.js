@@ -7,7 +7,7 @@ test('should set up default filter values', () => {
     const state = filtersReducer(undefined, { type: '@@INIT' })
     expect(state).toEqual({
         text: '',
-        sortBy: 'status',
+        sortBy: 'date',
         startDate: moment().startOf('year'),
         endDate: moment().endOf('month')
     })
